@@ -1,0 +1,898 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --grey-light: #F3F3F3;
+    --grey-text: #5A5A5A;
+    --funko-blue: #162D8A;
+    --funko-orange: #F77622;
+    --funko-purple: #4C3B8D;
+    --ribbon-blue: #00AEEF;
+    --font-main: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.main-header {
+    background-color: var(--black);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    height: 80px;
+    margin-right: auto;
+
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px; /* Agregué un pequeño margen para separar el logo del texto */
+}
+
+
+/* --- CORRECCIÓN AQUÍ --- */
+.main-nav {
+    display: flex;
+    gap: 25px;
+    margin: 0 auto; /* Centra la navegación automáticamente */
+}
+
+@media (min-width: 1200px) {
+    .main-nav{
+        margin-right: auto; /* Espacio entre imagen y texto */
+    }
+}
+
+.main-nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 20px;
+    padding: 8px 40px 8px 15px;
+    color: var(--white);
+    width: 200px;
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    right: 15px;
+    stroke: #888;
+}
+
+.cart-icon {
+    position: relative;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.cart-icon svg {
+    stroke: var(--white);
+}
+
+.cart-icon span {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--ribbon-blue);
+    color: var(--white);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.shipping-banner {
+    background-color: var(--ribbon-blue);
+    text-align: center;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger-menu svg {
+    stroke: var(--white);
+}
+
+
+/* --- Product Carousel --- */
+.product-carousel-section {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+
+.carousel-container {
+    position: relative;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+    flex: 0 0 calc(20% - 16px); /* 5 items -> 100/5 = 20%. 20px gap -> 4 gaps -> 80px total / 5 items = 16px per item */
+    min-width: 220px;
+}
+
+.product-image-container {
+    position: relative;
+    background-color: var(--grey-light);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+.badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border-top-left-radius: 8px;
+}
+
+.badge.new { background-color: var(--ribbon-blue); }
+.badge.exclusive { background-color: var(--funko-blue); }
+
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.wishlist-btn:hover { color: red; }
+
+.product-tag {
+    font-weight: bold;
+    color: var(--ribbon-blue);
+    font-size: 0.8rem;
+}
+
+.product-category {
+    font-size: 0.8rem;
+    color: var(--grey-text);
+    margin-top: 5px;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--grey-light);
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carousel-arrow.prev { left: -20px; }
+.carousel-arrow.next { right: -20px; }
+.carousel-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* --- Promo Grid Section --- */
+.promo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.promo-card {
+    border-radius: 12px;
+    padding: 40px;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.promo-card img {
+    max-width: 40%;
+    position: relative;
+    z-index: 2;
+}
+
+.promo-content {
+    z-index: 2;
+}
+
+.promo-card h2 { font-size: 2.5rem; font-weight: 900; }
+.promo-card p { font-size: 1.1rem; margin: 10px 0 25px 0; max-width: 300px; }
+
+.promo-btn-white, .promo-btn-black {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.promo-btn-white:hover, .promo-btn-black:hover { transform: scale(1.05); }
+
+.promo-btn-white { background-color: var(--white); color: var(--black); }
+.promo-btn-black { background-color: var(--black); color: var(--white); }
+
+.blue-card { background-color: var(--funko-blue); }
+.orange-card { background-color: var(--funko-orange); }
+.purple-card { background-color: var(--funko-purple); }
+
+.full-width-card {
+    grid-column: 1 / -1;
+    justify-content: center;
+    text-align: center;
+}
+
+.promo-content-center h2 { font-size: 2.2rem; }
+.promo-content-center p { max-width: 100%; }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+    .main-nav { display: none; }
+    .header-actions .search-bar { display: none; }
+    .hamburger-menu { display: block; }
+    .header-content { padding: 10px 15px; }
+
+    .main-nav.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background: var(--black);
+        width: 100%;
+        padding: 20px;
+        gap: 15px;
+        border-top: 1px solid #333;
+    }
+
+    .promo-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .promo-card img {
+        max-width: 60%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        flex: 0 0 calc(50% - 10px); /* 2 items on mobile */
+        min-width: 180px;
+    }
+
+    .carousel-arrow.prev { left: 5px; }
+    .carousel-arrow.next { right: 5px; }
+
+    .promo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-card h2 { font-size: 2rem; }
+    .promo-card p { font-size: 1rem; }
+}
+/* --- NUEVO: Estilos para DESKTOP (sin carrusel) --- */
+@media (min-width: 1025px) {
+    /* 1. Ocultamos las flechas ya que no se necesitan */
+    .carousel-arrow {
+        display: none;
+    }
+
+    /* 2. Hacemos que el contenedor de tarjetas se comporte como una cuadrícula */
+    .carousel-track {
+        display: flex;
+        flex-wrap: wrap; /* <-- La propiedad clave para que los items bajen */
+        justify-content: center; /* Opcional: para centrar las tarjetas */
+        gap: 20px;
+
+        /* 3. Anulamos CUALQUIER intento del JS por mover el carrusel */
+        transform: none !important; 
+    }
+
+    /* 4. Hacemos visible el contenido que se desborda (las nuevas filas) */
+    .carousel-track-container {
+        overflow: visible;
+    }
+    
+    /* 5. Ajustamos el tamaño de las tarjetas para que quepan 5 por fila */
+    .product-card {
+        flex-grow: 0; /* No queremos que crezcan para rellenar espacio */
+        flex-shrink: 0; /* No queremos que se encojan */
+        flex-basis: calc(20% - 16px); /* 5 tarjetas por fila (100% / 5) menos el espacio del gap */
+    }
+}
+#A{
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0px 0px;
+  transition: background-color 0.3s, color 0.1s;
+  cursor: pointer;
+}
+#A:hover {
+  background-color: white;
+  color: black;
+}
+/* Modifica el contenedor de la imagen */
+.product-image-container {
+    position: relative;
+    background-color: var(--grey-light);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 10px;
+    overflow: hidden; /* Importante para que la segunda imagen no se salga */
+}
+
+/* Ajusta la imagen principal y añade la transición */
+.product-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    transition: opacity 0.1s ease-in-out; /* Transición suave de opacidad */
+}
+
+/* Crea una pseudo-clase ::before en el contenedor para la imagen de hover */
+.product-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.1s ease-in-out; /* Misma transición */
+    z-index: 2; /* Se asegura que esté por encima de la imagen original */
+}
+
+/* Cuando se hace hover sobre el CONTENEDOR... */
+.product-image-container:hover .product-image {
+    opacity: 0; /* ...la imagen original se desvanece */
+}
+
+.product-image-container:hover::before {
+    opacity: 1; /* ...y la imagen de hover (en el ::before) aparece */
+}
+
+.product-image-container::before {
+    /* ... (las otras propiedades que ya añadimos) ... */
+    background-image: var(--hover-image); /* <-- ESTA LÍNEA ES NUEVA */
+    content: '';
+    position: absolute;
+    top: 10px; /* Ajustar al padding del contenedor */
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 2;
+}
+
+#MP{
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+/* --- ESTILOS GENERALES DEL FOOTER --- */
+.site-footer {
+    background-color: #000000; /* Fondo negro */
+    color: #ffffff; /* Letras blancas */
+    padding: 45px 0 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Fuente elegante y legible */
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Para que se adapte en móviles */
+}
+
+.footer-column {
+    width: 100%; /* Ocupa todo el ancho en móviles */
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+/* Adaptación para pantallas más grandes (tablets y escritorio) */
+@media (min-width: 768px) {
+    .footer-column {
+        width: 33.33%; /* Tres columnas en escritorio */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 10px 20px;
+    }
+
+    .main-nav {
+        display: none; /* Ocultar nav para menú hamburguesa */
+    }
+    
+    .hamburger-menu {
+        display: block; /* Mostrar menú hamburguesa */
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+    }
+    
+    .footer-bottom p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        padding: 20px; /* Reducir aún más el padding en móviles */
+    }
+}
+/* --- ESTILOS DE TEXTO Y ENLACES --- */
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.footer-column p {
+    margin: 0 0 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block; /* Necesario para que la animación funcione correctamente */
+    position: relative;
+    padding-bottom: 3px; /* Espacio para la línea */
+}
+
+
+/* --- ANIMACIÓN ELEGANTE DE LÍNEA EN HOVER --- */
+.footer-column a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* La línea empieza sin ancho */
+    height: 1.5px; /* Grosor de la línea */
+    display: block;
+    margin-top: 2px;
+    right: 0;
+    background: #ffffff; /* Color de la línea */
+    transition: width 0.4s ease; /* Duración y efecto de la animación */
+    -webkit-transition: width 0.4s ease;
+}
+
+/* Al pasar el mouse, la línea se expande desde la derecha */
+.footer-column a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #ffffff;
+}
+
+
+/* --- BARRA INFERIOR DEL FOOTER (COPYRIGHT Y PAGOS) --- */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 20px 35px 0;
+    border-top: 1px solid #444; /* Línea divisoria sutil */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #aaa; /* Un color más suave para el copyright */
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.payment-icons img {
+    opacity: 0.8;
+    max-height: 25px; /* Ajusta la altura de tus íconos de pago */
+}
+
+/* Adaptación para la barra inferior en móviles */
+@media (max-width: 767px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-bottom .payment-icons {
+        margin-top: 15px;
+    }
+}
+/* --- CÓDIGO PARA PEGAR EL FOOTER ABAJO --- */
+
+html {
+  height: 100%; /* Asegura que el HTML ocupe toda la altura */
+}
+
+body {
+  min-height: 100%; /* El cuerpo de la página tendrá como mínimo la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrap {
+  flex: 1; /* ¡Esta es la clave! Hace que el contenido principal crezca y empuje el footer hacia abajo */
+}
+
+
+a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit;        /* Hereda el color del texto de su elemento padre */
+    /* O puedes definir un color específico, por ejemplo: */
+    /* color: #333; */
+}
+
+/* Opcional: Estilos para cuando el usuario pasa el mouse por encima del enlace */
+a:hover {
+    color: #EEDC9A ; /* Cambia el color del texto al pasar el mouse */
+    text-decoration: underline; /* Puedes añadir un subrayado solo al pasar el mouse */
+}
+
+/* Opcional: Estilos para enlaces visitados (para que no se vuelvan púrpura) */
+a:visited {
+    color: inherit; /* Mantiene el color del texto incluso después de haber sido visitado */
+    /* O puedes definir un color específico, por ejemplo: */
+    /* color: #333; */
+}
+
+/* Opcional: Estilos para cuando el enlace está activo (si se está clicando) */
+a:active {
+    color: #EEDC9A ; /* Color al hacer clic */
+}
+/* USA ESTE CÓDIGO EN SU LUGAR: */
+/* --- CSS CORREGIDO Y UNIFICADO PARA EL HEADER DE MAIN --- */
+
+/* --- Variables de color (si no las tienes ya en un :root global) --- */
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --ribbon-blue: #00AEEF;
+    --grey-text: #AAAAAA; /* Añadida para el borde del menú móvil */
+}
+
+/* --- Estilos base del Header --- */
+.main-header {
+    padding: 0 !important;
+    background-color: var(--black);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    height: 80px;
+    margin-right: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: auto;
+    margin-right: 0px; /* Corregido de 10px a 0px para coincidir */
+}
+
+.main-nav {
+    display: flex;
+    gap: 25px;
+}
+
+.main-nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger-menu svg {
+    stroke: var(--white);
+}
+
+.cart-icon {
+    position: relative;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.cart-icon svg {
+    stroke: var(--white);
+}
+
+.cart-icon span {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--ribbon-blue);
+    color: var(--white);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.shipping-banner {
+    background-color: var(--ribbon-blue);
+    outline: 4px solid rgb(0, 0, 0);
+    text-align: center;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-shadow: 1px 2px 1px black;
+}
+
+/* --- Media queries que afectan al header (las que funcionan) --- */
+@media (max-width: 900px) {
+    .header-content {
+        position: relative;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--black);
+        flex-direction: column;
+        padding: 10px 0;
+        border-top: 1px solid var(--grey-text);
+    }
+    .main-nav.active {
+        display: flex; /* Esto es clave para que el JS muestre el menú */
+    }
+    .main-nav a {
+        padding: 15px 30px;
+        text-align: center;
+        border-bottom: 1px solid #444;
+    }
+    .main-nav a:last-child {
+        border-bottom: none;
+    }
+    .hamburger-menu {
+        display: block;
+    }
+    .header-content {
+        justify-content: space-between;
+    }
+    .logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 10px 20px;
+    }
+    .main-nav {
+        display: none;
+    }
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-content {
+        padding: 10px 20px;
+    }
+}
+#logo-text{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:900;
+    font-size: 1.2em;
+    font-style: italic;
+}
+#A:hover{
+
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit;        /* Hereda el color del texto de su elemento padre */
+    /* O puedes definir un color específico, por ejemplo: */
+    /* color: #333; */
+
+
+/* Opcional: Estilos para cuando el usuario pasa el mouse por encima del enlace */
+
+    color: #ffffff ; /* Cambia el color del texto al pasar el mouse */
+    
+
+
+/* Opcional: Estilos para enlaces visitados (para que no se vuelvan púrpura) */
+
+    color: inherit; /* Mantiene el color del texto incluso después de haber sido visitado */
+    /* O puedes definir un color específico, por ejemplo: */
+    /* color: #333; */
+
+
+/* Opcional: Estilos para cuando el enlace está activo (si se está clicando) */
+    color: #000000 ; /* Color al hacer clic */   
+    background-color: white;
+    transition:.1s;
+    outline: 1.2rem solid #ffffff ;
+}
+#A{
+    color:white;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
